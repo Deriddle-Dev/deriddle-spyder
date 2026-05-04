@@ -36,6 +36,9 @@ from spyder.plugins.completion.decorators import (
     handles,
     class_register,
 )
+from spyder.plugins.completion.providers.languageserver.providers.utils import (
+    process_uri
+)
 from spyder.plugins.editor.panels.utils import (
     merge_folding,
     collect_folding_regions,
@@ -985,8 +988,6 @@ class LSPMixin:
     @handles(lsp.TEXT_DOCUMENT_DEFINITION)
     def handle_go_to_definition(self, position):
         """Handle go to definition response."""
-        from spyder.plugins.completion.providers.languageserver.providers.utils import (
-            process_uri)
         try:
             if position is not None:
                 if isinstance(position, lsp.Location):
